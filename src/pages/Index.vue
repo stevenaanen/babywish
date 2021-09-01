@@ -6,25 +6,29 @@
     <h1>Jayla's Wishes</h1>
 
     <ul>
-      <li class="card">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti,
-        iusto!
-      </li>
-      <li class="card">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti,
-        iusto!
-      </li>
-      <li class="card">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti,
-        iusto!
-      </li>
-      <li class="card">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti,
-        iusto!
+      <li
+        class="card"
+        v-for="product in $page.products.edges"
+        :key="product.node.id"
+      >
+        {{ product.node.name }}
       </li>
     </ul>
   </Layout>
 </template>
+
+<page-query>
+query {
+  products: allItem {
+    edges {
+      node {
+        name,
+        id
+      }
+    }
+  }
+}
+</page-query>
 
 <script>
 export default {
